@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, th, td {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+<table align="center">
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th>studyFormat</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody th:each="student: ${students}">
+    <tr>
+        <td><p th:text="${student.getId()}"></p></td>
+        <td><p th:text="${student.getFirstName()}"></p></td>
+        <td><p th:text="${student.getLastName()}"></p></td>
+        <td><p th:text="${student.getEmail()}"></p></td>
+        <td><p th:text="${student.getStudyFormat()}"></p></td>
+        <td>
+            <a th:href="@{/students/{id}/edit(id=${student.id},groupId=${param.groupId})}">
+                <input type="submit" value="Update">
+            </a>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/students/{id}/delete(id=${student.id},groupId=${param.groupId})}">
+                <input type="submit" value="
+Delete"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<div style='text-align:center; width:100%'><a th:href="@{/students/newStudent(groupId=${param.groupId})}">
+    Create a new student</a><a>
+
+</a></div>
+
+<br>
+
+<div style='text-align:center; width:100%'><a  href="/">Main</a><a></a></div>
+</body>
+</html>
